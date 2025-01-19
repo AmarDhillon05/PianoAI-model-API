@@ -211,7 +211,7 @@ def get():
     return "PianoAI"
 
 
-@app.route("/", methods = ['POST'])
+@app.route("/gen", methods = ['POST'])
 @cross_origin()
 def api_handler():
     try:
@@ -220,7 +220,5 @@ def api_handler():
         return generated
     except Exception as e:
         return json.dumps({"error" : e})
-
-app.run(port = 8000)
 
     
