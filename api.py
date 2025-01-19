@@ -214,9 +214,12 @@ def get():
 @app.route("/", methods = ['POST'])
 @cross_origin()
 def api_handler():
-    data = request.data.decode('utf-8')
-    generated = generate_from_notes(data[0])
-    return generated
+    try:
+        data = request.data.decode('utf-8')
+        generated = generate_from_notes(data[0])
+        return generated
+    except Exception as e:
+        return json.dumps({"error" : e})
 
 app.run(port = 8000)
 
